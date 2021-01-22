@@ -1,0 +1,14 @@
+.Home {
+  display: flex;
+}
+
+.home-content {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+.temp {
+  display: flex;
+}
