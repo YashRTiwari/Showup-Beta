@@ -1,7 +1,8 @@
 import React from 'react'
-import RoomCard from '../roomCard/RoomCard';
+import EventDetail from '../eventDetails/EventDetail';
 import Sidebar from '../sidebar/Sidebar';
 import  './Home.css'
+import data from '../dummyData/Data.js'
 
 export default function Home() {
     return (
@@ -9,22 +10,7 @@ export default function Home() {
             <Sidebar />
             <div className="home-content">
 
-            <h1>Opening Soon</h1>
-
-                <div className="temp">
-                <RoomCard/>
-                <RoomCard/>
-                <RoomCard/>
-                <RoomCard/>
-                </div>
-                
-                <h1>Opening Soon</h1>
-                <div className="temp">
-                <RoomCard/>
-                <RoomCard/>
-                <RoomCard/>
-                <RoomCard/>
-                </div>
+                <EventDetail eventData={data} readOnly={true}/>
 
             </div>
         </div>

@@ -1,0 +1,19 @@
+.Tag {
+  min-width: 60px;
+  background-color: rosybrown;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 4px;
+}
+.tag-title {
+  display: flex;
+  margin-right: 4px;
+}
+
+.tag-remove {
+  padding: 0px !important;
+  margin: 0px !important;
+}

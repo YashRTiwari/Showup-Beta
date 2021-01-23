@@ -1,0 +1,26 @@
+.CueCard {
+  width: 200px;
+  background-color: steelblue;
+  border-radius: 25px;
+  padding: 20px;
+}
+
+.cue-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cue-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.cue-menu-icon {
+  color: white;
+}
+
+.CueCard Button {
+  padding: 4px 0px;
+  justify-content: flex-end;
+}

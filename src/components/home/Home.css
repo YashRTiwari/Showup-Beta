@@ -1,5 +1,8 @@
 .Home {
   display: flex;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: rebeccapurple; */
 }
 
 .home-content {
@@ -7,8 +10,6 @@
   padding: 30px;
   flex-direction: column;
   margin-left: 80px;
-}
-
-.temp {
-  display: flex;
+  /* background-color: red; */
+  flex: 1;
 }
