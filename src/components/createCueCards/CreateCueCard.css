@@ -1,0 +1,27 @@
+.CreateCueCard {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  /* background-color: khaki; */
+}
+
+.add-cue-cards {
+  display: flex;
+  flex-direction: row;
+  padding: 30px 0px;
+}
+
+.add-cue-input {
+  width: 600px;
+  margin: 0px 30px !important;
+}
+
+.add-cue-btn {
+  height: inherit;
+}
+
+.add-cue-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

@@ -9,7 +9,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function CueCard({title, desc, handleDelete}) {
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+  console.log(title +" "+desc);
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
