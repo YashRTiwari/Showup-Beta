@@ -1,0 +1,7 @@
+.Header {
+  display: flex;
+}
+
+.header-title {
+  font-size: 32px;
+}

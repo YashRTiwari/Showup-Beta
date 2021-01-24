@@ -12,11 +12,10 @@ export default function CreateCueCard() {
 
     const addCueCard = (e) => {
         e.preventDefault();
-        const cue = {
+        let newCues = Array({
             "title" : titleRef.current.value,
             "desc" : descRef.current.value
-        };
-        let newCues = Array({cue})
+        })
         if(cues){
             newCues = newCues.concat(cues)
         }
@@ -24,29 +23,27 @@ export default function CreateCueCard() {
         console.log(cues)
     }
 
+    const handleDelete = (itemToRemove) => {
+        console.log(itemToRemove)
+        const newList = cues.filter((item) => item !== itemToRemove);
+        setCues(newList)
+    }
+
 
     return (
         <div className="CreateCueCard">
             <h3>Cue Cards</h3>
-            
-            <div className="add-cue-cards">
-                <form  onSubmit={addCueCard}>
+                <form  onSubmit={addCueCard}  className="add-cue-cards">
                     <TextField 
                         label="Title"
                         variant="outlined"
                         inputRef={titleRef}
-                        InputLabelProps={{
-                            shrink: true,
-                            }} 
                         />
 
                     <TextField className="add-cue-input" 
                         label="Description"
                         variant="outlined"
                         inputRef={descRef}
-                        InputLabelProps={{
-                            shrink: true,
-                            }} 
                         />
 
                     <Button 
@@ -57,13 +54,11 @@ export default function CreateCueCard() {
                     </Button>
                 </form>
                     
-            </div>
 
             <div className="add-cue-list">
                 {
                     cues && cues.map((item, index) => {
-                        console.log(item)
-                        return(<CueCard  key={index} title={item.cue.title} desc={item.cue.desc}/>);
+                        return(<CueCard  key={index} data={item} handleDelete={handleDelete}/>);
                     })
                 }
             </div>

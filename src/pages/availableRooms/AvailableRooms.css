@@ -1,0 +1,10 @@
+.AvailableRooms {
+  display: flex;
+  flex-direction: column;
+}
+
+.avail-room-live {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px;
+}

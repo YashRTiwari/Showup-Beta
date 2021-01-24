@@ -1,0 +1,12 @@
+.user-rooms-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-rooms {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px;
+}
