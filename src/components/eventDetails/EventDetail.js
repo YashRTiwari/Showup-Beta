@@ -12,7 +12,7 @@ export default function EventDetail({
             <div className="event-image"/>
             <div className="event-info">
                 <TextField className="event-input" 
-                    value={eventData.title} 
+                    value={eventData && eventData.title} 
                     label="Title"
                     variant="outlined"
                     InputLabelProps={{
@@ -31,7 +31,7 @@ export default function EventDetail({
                         readOnly: readOnly 
                     }}
                     label="Description"
-                    defaultValue={eventData.desc} 
+                    defaultValue={eventData && eventData.desc} 
                     variant="outlined" />
 
                 <TextField className="event-tag-header" 
@@ -55,7 +55,7 @@ export default function EventDetail({
                         className="event-datetime"
                         label="Start Date"
                         type="datetime-local"
-                        value={eventData.startDate}
+                        value={eventData && eventData.startDate}
                         InputLabelProps={{
                             shrink: true,
                         }} 
@@ -70,7 +70,7 @@ export default function EventDetail({
                         className="event-datetime"
                         label="End Date"
                         type="datetime-local"
-                        value={eventData.endDate}
+                        value={eventData && eventData.endDate}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -85,7 +85,7 @@ export default function EventDetail({
                 <TextField
                     className="event-n-part"
                     label="Number of participants"
-                    value={eventData.numOfParticipants}
+                    value={eventData && eventData.numOfParticipants}
                     type="number"
                     InputLabelProps={{
                         shrink: true,

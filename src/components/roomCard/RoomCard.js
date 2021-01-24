@@ -1,6 +1,7 @@
 import React from 'react'
 import './RoomCard.css'
 import { Button } from '@material-ui/core';
+import {Link} from 'react-router-dom';
 
 
 export default function RoomCard({roomData}) {
@@ -31,12 +32,8 @@ export default function RoomCard({roomData}) {
             <div className="room-desc">{simplifiedRoomData.desc}</div>
             <div className="room-fun">
                 
-                <Button variant="contained" color="secondary">Join</Button>
+                <Link to="/join-room"><Button variant="contained" color="secondary">Join</Button></Link>
 
-                <div>
-
-                </div>
-            
             </div>
         </div>
     )

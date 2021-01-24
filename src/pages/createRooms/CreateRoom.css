@@ -1,2 +1,21 @@
 .CreateRoom {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  align-items: center;
+}
+
+.create-room-navigator {
+  display: flex;
+  align-items: center;
+}
+
+.create-room-navigator li {
+  list-style: none;
+  display: inline;
+  margin: 50px 20px;
+}
+
+.create-room-links {
+  margin: 50px 20px;
 }

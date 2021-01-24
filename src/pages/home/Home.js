@@ -8,6 +8,8 @@ import {
   } from "react-router-dom";
 import AvailableRooms from '../availableRooms/AvailableRooms.js';
 import UserRooms from '../yourRooms/UserRooms.js';
+import CreateRoom from '../createRooms/CreateRoom.js';
+import JoinRoom from '../joinRoom/JoinRoom.js';
 
 export default function Home() {
     return (
@@ -17,7 +19,8 @@ export default function Home() {
                 <Switch>
                     <Route path="/rooms"><AvailableRooms /></Route>
                     <Route path="/user-rooms"><UserRooms /></Route>
-                    <Route path="/create-room"></Route>
+                    <Route path="/create-room"><CreateRoom/></Route>
+                    <Route path="/join-room"><JoinRoom/></Route>
                 </Switch>
             </div>
         </div>
