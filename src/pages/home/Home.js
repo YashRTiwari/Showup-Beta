@@ -10,6 +10,7 @@ import AvailableRooms from '../availableRooms/AvailableRooms.js';
 import UserRooms from '../yourRooms/UserRooms.js';
 import CreateRoom from '../createRooms/CreateRoom.js';
 import JoinRoom from '../joinRoom/JoinRoom.js';
+import RoomDetail from '../roomDetail/RoomDetail.js';
 
 export default function Home() {
     return (
@@ -21,6 +22,7 @@ export default function Home() {
                     <Route path="/user-rooms"><UserRooms /></Route>
                     <Route path="/create-room"><CreateRoom/></Route>
                     <Route path="/join-room"><JoinRoom/></Route>
+                    <Route path="/room-detail/:data"><RoomDetail/></Route>
                 </Switch>
             </div>
         </div>

@@ -6,14 +6,16 @@ import {
   Route
 } from "react-router-dom";
 
+
+
 function App() {
+
   return (
-    <Router>
-      <div className="App">
-        <Home/>
-      </div>
-    </Router>
-    
+      <Router>
+        <div className="App">
+          <Home/>
+        </div>
+      </Router>
   );
 }
 
