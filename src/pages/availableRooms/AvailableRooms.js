@@ -14,9 +14,13 @@ export default function AvailableRooms() {
             <Header className="room-header" title="Live Rooms"/>
             <div className="avail-room-live">
                 {
-                    liveRoomData.map((item, index) =>{
-                        return(<RoomCard roomData={item} />)
-                    })
+                            liveRoomData.map((item, index) =>{ 
+                                return(
+                                    <Link to={`/room-detail/${index}`}>
+                                        <RoomCard roomData={item} key={index}/>
+                                    </Link>)
+                            })
+                    
                 }
             </div>
 

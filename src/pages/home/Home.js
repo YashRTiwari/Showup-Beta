@@ -22,7 +22,7 @@ export default function Home() {
                     <Route path="/user-rooms"><UserRooms /></Route>
                     <Route path="/create-room"><CreateRoom/></Route>
                     <Route path="/join-room"><JoinRoom/></Route>
-                    <Route path="/room-detail/:data"><RoomDetail/></Route>
+                    <Route path="/room-detail/:index"><RoomDetail/></Route>
                 </Switch>
             </div>
         </div>

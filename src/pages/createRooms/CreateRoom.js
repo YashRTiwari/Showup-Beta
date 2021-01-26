@@ -9,17 +9,13 @@ import {
 import EventDetail from '../../components/eventDetails/EventDetail.js';
 import CreateCueCard from '../../components/createCueCards/CreateCueCard.js'
 import { Divider } from '@material-ui/core';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import CreateRoomReducer from '../../reducer/CreateRoomReducer.js'
+
 
 function CreateRoom() {
 
     let { path, url } = useRouteMatch();
-    const store = createStore(CreateRoomReducer)
 
     return (
-        <Provider store={store}>
             <div className="CreateRoom">
                 <div className="create-room-navigator">
                         <Link to={`${path}/add-room-details`}><div className="create-room-links">Create Room</div></Link>
@@ -28,7 +24,6 @@ function CreateRoom() {
                         <Divider width="200px"/>
                         <Link><div className="create-room-links">Invite Participants</div></Link>
                 </div>
-
                 <Switch>
                     <Route path={`${path}/add-room-details`}>
                         <EventDetail readOnly={false}/>
@@ -39,8 +34,6 @@ function CreateRoom() {
                     </Route>
                 </Switch>
             </div>
-        </Provider>
-        
     )
 }
 

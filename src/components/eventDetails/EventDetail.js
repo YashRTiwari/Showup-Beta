@@ -2,23 +2,25 @@ import { TextField } from '@material-ui/core'
 import React, { useRef } from 'react'
 import './EventDetail.css'
 import Tag from '../tags/Tag'
-import {connect} from 'react-redux';
-import {
-    Link,
-  } from "react-router-dom";
+import {useSelector, useDispatch } from 'react-redux'
+import {updateTempRoomDetails} from '../../actions'
+
 
 function EventDetail({
-    eventData, readOnly, addRoomDetails
+    readOnly,
 }) {
 
     const titleRef = useRef(null);    
     const descRef = useRef(null);    
     const numOfParticipantsRef = useRef(null);    
     const startDateRef = useRef(null);    
-    const endDateRef = useRef(null);    
+    const endDateRef = useRef(null);
+    
+    const eventData = useSelector(state => readOnly ? state.roomDetailReducer : state.tempRoomDetailReducer) 
+    console.log(eventData);
+    const dispatch = useDispatch();
 
-
-    const moveToCueCards = (e) => {
+    const moveToCueCards = () => {
         // console.log(
         //     titleRef.current.value+ " " +
         //     descRef.current.value + " " +
@@ -33,8 +35,15 @@ function EventDetail({
             startDate : startDateRef.current.value,
             endDate : endDateRef.current.value 
         }
-
-        addRoomDetails(roomDetails);
+        
+        dispatch(updateTempRoomDetails(
+            titleRef.current.value,
+            descRef.current.value,
+            ['hello world'],
+            startDateRef.current.value,
+            endDateRef.current.value,
+            numOfParticipantsRef.current.value,
+        ))
     }
 
     return (
@@ -44,7 +53,7 @@ function EventDetail({
 
                 <TextField 
                     className="event-input" 
-                    value={eventData && eventData.title} 
+                    defaultValue={eventData && eventData.title} 
                     label="Title"
                     variant="outlined"
                     inputRef={titleRef}
@@ -68,19 +77,21 @@ function EventDetail({
                     defaultValue={eventData && eventData.desc} 
                     variant="outlined" />
 
-                <TextField className="event-tag-header" 
-                   label="Tags" 
-                   variant="outlined"
-                   InputLabelProps={{
-                    shrink: true,
-                    }} 
-                    InputProps={{
-                        readOnly: readOnly 
-                    }} />
+                {
+                    !readOnly &&  <TextField className="event-tag-header" 
+                    label="Tags" 
+                    variant="outlined"
+                    InputLabelProps={{
+                     shrink: true,
+                     }} 
+                     InputProps={{
+                         readOnly: readOnly 
+                     }} />
+                }
 
                 <div className="event-tags">
                     { eventData && eventData.tags && eventData.tags.map((item, index) => {
-                        return(<Tag tag={item["name"]}/>)
+                        return(<Tag tag={item["name"]} readOnly={readOnly}/>)
                     })}
                 </div>
 
@@ -89,7 +100,7 @@ function EventDetail({
                         className="event-datetime"
                         label="Start Date"
                         type="datetime-local"
-                        value={eventData && eventData.startDate}
+                        defaultValue={eventData && eventData.startDate}
                         inputRef={startDateRef}
                         InputLabelProps={{
                             shrink: true,
@@ -106,7 +117,7 @@ function EventDetail({
                         label="End Date"
                         type="datetime-local"
                         inputRef={endDateRef}
-                        value={eventData && eventData.endDate}
+                        defaultValue={eventData && eventData.endDate}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -118,18 +129,18 @@ function EventDetail({
                 </div>
 
                 <div>
-                <TextField
-                    className="event-n-part"
-                    label="Number of participants"
-                    value={eventData && eventData.numOfParticipants}
-                    inputRef={numOfParticipantsRef}
-                    type="number"
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    InputProps={{
-                        readOnly: readOnly 
-                    }}/>
+                    <TextField
+                        className="event-n-part"
+                        label="Number of participants"
+                        defaultValue={eventData && eventData.numOfParticipants}
+                        inputRef={numOfParticipantsRef}
+                        type="number"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        InputProps={{
+                            readOnly: readOnly 
+                        }}/>
 
                 </div>
 
@@ -141,25 +152,6 @@ function EventDetail({
     )
 }
 
-const MapStateToProp = (state) => {
-    return  {
-        title : state.title,
-        desc : state.desc,
-        tags : [],
-        startDate: state.startDate, 
-        endDate: state.endDate,
-        noOfParticipants: state.noOfParticipants,
-    }
-}
 
-const MapDispatchToProp = (dispatch) => {
-    return{
-        addRoomDetails: (data) => 
-        {   
-            // console.log(data)
-            dispatch({ type: "addRoomDetails", payload: data })
-        }
-    }
-}
 
-export default connect(MapStateToProp, MapDispatchToProp)(EventDetail);
+export default EventDetail;
