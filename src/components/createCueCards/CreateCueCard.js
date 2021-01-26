@@ -2,31 +2,40 @@ import {React, useState, useRef} from 'react'
 import './CreateCueCard.css';
 import { TextField, Button } from '@material-ui/core'
 import CueCard from '../cueCards/CueCards.js';
+import {useSelector, useDispatch } from 'react-redux'
+import {addCueCardsToTempRoomDetail, removeCueCardsToTempRoomDetail} from '../../actions/'
 
 
-export default function CreateCueCard() {
+export default function CreateCueCard({readOnly}) {
 
-    const [cues, setCues] =  useState(null)
     const titleRef = useRef(null)
     const descRef = useRef(null)
 
+    const cues = useSelector(state => readOnly ? state.roomDetailReducer.cueCards : state.tempRoomDetailReducer.cueCards) 
+    const dispatch = useDispatch();
+
     const addCueCard = (e) => {
         e.preventDefault();
-        let newCues = Array({
-            "title" : titleRef.current.value,
-            "desc" : descRef.current.value
-        })
-        if(cues){
-            newCues = newCues.concat(cues)
-        }
-        setCues(newCues)
-        console.log(cues)
+        
+        // let newCues = Array({
+        //     "title" : titleRef.current.value,
+        //     "desc" : descRef.current.value
+        // })
+
+        dispatch(addCueCardsToTempRoomDetail(titleRef.current.value, descRef.current.value))
+        
+        // if(cues){
+        //     newCues = newCues.concat(cues)
+        // }
+        // setCues(newCues)
+        // console.log(cues)
     }
 
     const handleDelete = (itemToRemove) => {
-        console.log(itemToRemove)
-        const newList = cues.filter((item) => item !== itemToRemove);
-        setCues(newList)
+        dispatch(removeCueCardsToTempRoomDetail(itemToRemove))
+        // console.log(itemToRemove)
+        // const newList = cues.filter((item) => item !== itemToRemove);
+        // setCues(newList)
     }
 
 

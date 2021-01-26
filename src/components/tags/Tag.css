@@ -1,5 +1,4 @@
 .Tag {
-  min-width: 60px;
   background-color: rosybrown;
   padding: 4px 12px;
   border-radius: 20px;
@@ -11,9 +10,26 @@
 .tag-title {
   display: flex;
   margin-right: 4px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .tag-remove {
   padding: 0px !important;
   margin: 0px !important;
+}
+
+.creat-room-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-room-btn {
+  margin-left: 50px !important;
+}
+
+.next {
+  width: 100px !important;
 }

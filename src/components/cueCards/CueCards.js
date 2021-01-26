@@ -7,7 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
-export default function CueCard({data, handleDelete}) {
+export default function CueCard({data, handleDelete, readOnly}) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -25,12 +25,17 @@ export default function CueCard({data, handleDelete}) {
         <div className="CueCard">
             <div className="cue-header">
                 <div className="cue-title">{data.title}</div>
-                <IconButton aria-controls="cue-menu" aria-haspopup="true" onClick={handleClick}>
+                {
+                 !readOnly  && 
+                    <>
+                    <IconButton aria-controls="cue-menu" aria-haspopup="true" onClick={handleClick}>
                     <MoreVertIcon  className="cue-menu-icon"/>
                 </IconButton>
                 <Menu id="cure-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={deleteItem} >
                         <MenuItem onClick={deleteItem}><DeleteIcon style={{marginRight : "4px"}}/> Delete</MenuItem>
                 </Menu>
+                    </>
+              }
             </div>
             <div className="cue-desc">{data.desc}</div>
         </div>

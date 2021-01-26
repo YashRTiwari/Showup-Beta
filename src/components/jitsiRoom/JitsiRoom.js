@@ -26,7 +26,7 @@ const JitsiRoom = ({
   }, [error])
 
   return (
-    <div style={{ ...{ width: '100%', height: '100%'}, ...containerStyles }}>
+    <div style={{ ...{ width: '80%', height: '100%'}, ...containerStyles }}>
       {error && (errorComponent || <p>{error}</p>)}
       {!error && loading && (loadingComponent || <p>Loading ...</p>)}
       <div
