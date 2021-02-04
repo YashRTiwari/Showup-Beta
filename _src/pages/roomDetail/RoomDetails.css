@@ -1,0 +1,18 @@
+.RoomDetail {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: lightseagreen; */
+  justify-content: center;
+}
+
+.room-detail-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 0px 50px;
+}
+
+.room-detail-header a {
+  text-decoration: none;
+}

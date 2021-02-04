@@ -1,8 +1,17 @@
 .JoinRoom {
   width: 95%;
-  height: 90vh;
+  height: calc(90vh - 50px);
   display: flex;
   flex-direction: row;
+}
+
+.join-room-header {
+  width: 95%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px 0px 20px;
 }
 
 ::-webkit-scrollbar {
@@ -14,10 +23,19 @@
 }
 
 .join-room-cues {
-  height: 90vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  overflow-y: scroll;
-  margin: 0px 20px;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  padding-left: 20px;
 }
+
+.join-room-cue{
+  padding-top: 20px !important;
+}
+
+.join-room-details {
+  margin: 50px 0px;
+}
+
+

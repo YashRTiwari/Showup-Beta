@@ -1,5 +1,5 @@
 import { Button, TextField } from '@material-ui/core'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import './EventDetail.css'
 import Tag from '../tags/Tag'
 import {useSelector, useDispatch } from 'react-redux'
@@ -9,10 +9,9 @@ import {updateTempRoomDetails,
     addDescToTempRoomDetail,
     addStartDateToTempRoomDetail,
     addEndDateToTempRoomDetail,
-    addNOPToTempRoomDetail, addImageToTempRoomDetail
+    addNOPToTempRoomDetail
 } from '../../actions'
 import { useParams } from 'react-router-dom'
-import AddIcon from '@material-ui/icons/Add';
 
 
 function EventDetail({
@@ -25,18 +24,37 @@ function EventDetail({
     const numOfParticipantsRef = useRef(null);    
     const startDateRef = useRef(null);    
     const endDateRef = useRef(null);
-    const fileSelector = useRef(null);
 
     const params = useParams()
     
     const eventData = useSelector(state => readOnly ? state.roomListReducer[params.index] : state.tempRoomDetailReducer) 
-
-    const [eventImageSource, setEventImageSource] = useState(eventData && eventData.img)
-
-
     console.log(eventData);
     const dispatch = useDispatch();
     const userTags = []
+
+    // const moveToCueCards = () => {
+       
+    //     const title = titleRef.current.value;
+    //     const desc = descRef.current.value;
+    //     const startDate = startDateRef.current.value
+    //     const endDate = endDate.current.value;
+    //     const numOfParticipants = numOfParticipantsRef.current.value;
+    //     dispatch(updateTempRoomDetails(
+    //         titleRef.current.value,
+    //         descRef.current.value,
+    //         startDateRef.current.value,
+    //         endDateRef.current.value,
+    //         numOfParticipantsRef.current.value,
+    //     ))
+    //     if(title.length > 0 && 
+    //         desc.length > 0 &&
+    //         startDate.length > 0 &&
+    //         endDate.length > 0 &&
+    //         numOfParticipants > 0
+    //         ){
+    //         // handleGoToCueCards()
+    //     }
+    // }
 
     const handleTitleChange = (e) => {
         dispatch(addTitleToTempRoomDetail(e.target.value))
@@ -56,6 +74,8 @@ function EventDetail({
     const handleEndDateChange = (e) => {
         dispatch(addEndDateToTempRoomDetail(e.target.value))
     }
+
+
     
     const handleNOPChange = (e) => {
         dispatch(addNOPToTempRoomDetail(e.target.value))
@@ -67,39 +87,11 @@ function EventDetail({
             tagRef.current.value = ''
         }
      }
-    
-     const handleFileSelector = (e) => {
-        //  readURL(e)
-        console.log(e)
-        if(e.target.files  && e.target.files[0]){
-            dispatch(addImageToTempRoomDetail(URL.createObjectURL(e.target.files[0])))
-        }
-        
-     }
 
     return (
         <div className="EventDetail">
-
-            {
-                <>
-                <input ref={fileSelector} 
-                    accept="image/*"
-                    style={{display: 'none'}}
-                    type="file" onChange={(e) => handleFileSelector(e)}/>
-                <Button className="event-image"  onClick={() => {
-                    if(!readOnly) {fileSelector.current.click()}}
-                }>
-                    {
-                        eventData && eventData.img && <img className="event-image2" src={eventData && eventData.img}/>
-                    }
-                    {
-                        (!eventData || !eventData.img && <AddIcon/> )
-                    }
-                    
-
-                </Button>
-            </>
-            }
+            
+            <img className="event-image" src={eventData && eventData.img}/>
 
             <div className="event-info">
 

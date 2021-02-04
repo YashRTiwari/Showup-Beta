@@ -92,13 +92,6 @@ export const addParticipantsToTempRoomDetail = (ap)  => {
     }
 }
 
-export const addImageToTempRoomDetail = (imgFile)  => {
-    return {
-        type: 'addImage',
-        data : imgFile
-    }
-}
-
 export const updateTempRoomDetails = (title, desc, tags, startDate, endDate,  numOfParticipants) => {
     return {
         type: 'update',

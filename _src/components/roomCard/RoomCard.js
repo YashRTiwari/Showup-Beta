@@ -14,8 +14,8 @@ export default function RoomCard({roomData, index}) {
     }
 
     function trimTitle(title) {
-        if(title.length >= 36 ){
-            return(title.substring(0, 36)+" ...");
+        if(title.length >= 40 ){
+            return(title.substring(0, 40)+" ...");
         } else 
             return(title);
     }

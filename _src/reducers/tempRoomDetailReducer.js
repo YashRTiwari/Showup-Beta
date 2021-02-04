@@ -6,8 +6,7 @@ const initialState = {
     endDate : "",
     numOfParticipants: 0,
     cueCards: [],
-    inviteParticipants: [],
-    img: null,
+    inviteParticipants: []
 }
 
 const tempRoomDetailReducer = (state = initialState, action) => {
@@ -66,12 +65,6 @@ const tempRoomDetailReducer = (state = initialState, action) => {
                     return {
                         ...state,
                         cueCards : newCues
-                    }
-
-                case  'addImage' : 
-                    return {
-                        ...state,
-                        img : action.data
                     }
 
                     case 'removeCueCards':

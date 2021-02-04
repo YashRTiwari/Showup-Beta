@@ -18,7 +18,7 @@ export default function Home() {
             <Sidebar />
             <div className="home-content">
                 <Switch>
-                    <Route exact path="/"><AvailableRooms /></Route>
+                    <Route path="/rooms"><AvailableRooms /></Route>
                     <Route path="/user-rooms"><UserRooms /></Route>
                     <Route path="/create-room"><CreateRoom/></Route>
                     <Route path="/join-room/:index/:title"><JoinRoom/></Route>

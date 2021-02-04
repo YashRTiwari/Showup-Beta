@@ -1,0 +1,29 @@
+.CreateRoom {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  align-items: center;
+}
+
+.create-room-navigator {
+  display: flex;
+  align-items: center;
+}
+
+.create-room-navigator li {
+  list-style: none;
+  display: inline;
+  margin: 50px 20px;
+}
+
+.create-room-links {
+  margin: 50px 20px;
+}
+
+.user-avail {
+  margin-top: 300px;
+  padding: 25px 80px;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  text-align: center;
+}

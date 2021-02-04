@@ -1,0 +1,23 @@
+.JoinRoom {
+  width: 95%;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.con {
+  overflow: hidden;
+}
+
+.join-room-cues {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  margin: 0px 20px;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}

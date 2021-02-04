@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function Sidebar() {
     return (
         <div className="Sidebar">
-            <Link to="/"><HomeRoundedIcon className="sidebar-icons"/></Link>
+            <Link to="/rooms"><HomeRoundedIcon className="sidebar-icons"/></Link>
             <Link to="/user-rooms"><VideocamRoundedIcon className="sidebar-icons"/></Link>
         </div>
     )
