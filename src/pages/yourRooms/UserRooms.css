@@ -1,24 +1,25 @@
 .UserRooms {
-  width: 90%;
+	width: 90%;
 }
 .user-rooms-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .user-rooms-header a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .user-rooms {
-  display: flex;
-  flex-direction: row;
-  margin: 20px 0px;
+	display: flex;
+	flex-direction: row;
+	margin: 20px 0px;
+	flex-wrap: wrap;
 }
 
 .user-rooms a {
-  text-decoration: none !important;
-  color: #1f1f1f;
+	text-decoration: none !important;
+	color: #1f1f1f;
 }

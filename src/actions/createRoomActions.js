@@ -1,3 +1,6 @@
+import { firestore } from "../config/firebase-config.js";
+import { addUserRoom } from "./index.js";
+
 export const CREATE_ROOM_ACTION_TYPE = {
 	ADD_TITLE: "ADD_TITLE",
 	ADD_DESC: "ADD_DESC",
@@ -8,6 +11,8 @@ export const CREATE_ROOM_ACTION_TYPE = {
 	ADD_CUE_CARDS: "ADD_CUE_CARDS",
 	ADD_PARTICIPANTS: "ADD_PARTICIPANTS",
 	ADD_IMAGE: "ADD_IMAGE",
+
+	ADD_ROOM_TO_DB: "ADD_ROOM_TO_DB",
 
 	REMOVE_CUE_CARDS: "REMOVE_CUE_CARDS",
 	REMOVE_TAG: "REMOVE_TAG",
@@ -99,31 +104,23 @@ export const addImageToRoomDetail = (imgFile) => {
 	};
 };
 
-export const updateRoomDetail = (
-	title,
-	desc,
-	tags,
-	startDate,
-	endDate,
-	imgFile,
-	numOfParticipants
-) => {
-	return {
-		type: CREATE_ROOM_ACTION_TYPE.UPDATE_ROOM_DATA,
-		data: {
-			title,
-			desc,
-			tags,
-			endDate,
-			startDate,
-			imgFile,
-			numOfParticipants,
-		},
-	};
-};
-
 export const clearRoomDetail = () => {
 	return {
 		type: CREATE_ROOM_ACTION_TYPE.CLEAR_ROOM_DATA,
 	};
+};
+
+export const addRoomToDb = () => async (dispatch, getState) => {
+	const room = getState().tempRoomDetailReducer;
+	const id = firestore.collection("rooms").doc().id;
+	await firestore
+		.collection("rooms")
+		.doc(id)
+		.set(room)
+		.then(() => {
+			dispatch(addUserRoom(room));
+		})
+		.catch((err) => {
+			console.log("Data had an error " + err);
+		});
 };

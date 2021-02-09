@@ -5,7 +5,7 @@ import EventDetail from "../../components/eventDetails/EventDetail.js";
 import CreateCueCard from "../../components/createCueCards/CreateCueCard.js";
 import { Button, Divider } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { addUserRoom } from "../../actions";
+import { addRoomToDb, addToDb } from "../../actions/createRoomActions.js";
 import Error from "../../components/error/Error.js";
 
 function CreateRoom() {
@@ -16,11 +16,11 @@ function CreateRoom() {
 	const dispatch = useDispatch();
 	const [error, setError] = useState(null);
 
-	function goBack() {
+	const goBack = () => {
 		history.push("/user-rooms");
-	}
+	};
 
-	function goToCueCards() {
+	const goToCueCards = () => {
 		// setError(null);
 		// var e = null;
 		// const startDate = new Date(state.startDate);
@@ -46,20 +46,20 @@ function CreateRoom() {
 		// 	history.push(`${path}/add-cue-cards`);
 		// }
 		history.push(`${path}/add-cue-cards`);
-	}
+	};
 
-	function goToRoomDetails() {
+	const goToRoomDetails = () => {
 		history.push(`${path}/`);
-	}
+	};
 
-	function goToInviteParticipants() {
+	const goToInviteParticipants = () => {
 		history.push(`${path}/invite-participants`);
-	}
+	};
 
-	function addRoomToDb() {
+	const submitRoomToDb = () => {
+		dispatch(addRoomToDb(state));
 		history.push("/user-rooms");
-		dispatch(addUserRoom(state));
-	}
+	};
 
 	const showError = () => {
 		return <Error title='Error' message={error} />;
@@ -79,7 +79,7 @@ function CreateRoom() {
 				</Route>
 
 				<Route path={`${path}/invite-participants`}>
-					<Step3 path={path} goBack={goToCueCards} goNext={addRoomToDb} />
+					<Step3 path={path} goBack={goToCueCards} goNext={submitRoomToDb} />
 				</Route>
 			</Switch>
 		</div>
