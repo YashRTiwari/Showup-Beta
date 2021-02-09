@@ -1,3 +1,5 @@
+import { CREATE_ROOM_ACTION_TYPE } from "../actions/createRoomActions.js";
+
 const initialState = {
 	title: "",
 	desc: "",
@@ -12,7 +14,7 @@ const initialState = {
 
 const tempRoomDetailReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case "update":
+		case CREATE_ROOM_ACTION_TYPE.UPDATE_ROOM_DATA:
 			const data = action.data;
 			return {
 				title: data.title,
@@ -21,39 +23,38 @@ const tempRoomDetailReducer = (state = initialState, action) => {
 				endData: data.endDate,
 				numOfParticipants: data.numOfParticipants,
 			};
-		case "addTitle":
+		case CREATE_ROOM_ACTION_TYPE.ADD_TITLE:
 			return {
 				...state,
 				title: action.data,
 			};
-		case "addDesc":
+		case CREATE_ROOM_ACTION_TYPE.ADD_DESC:
 			return {
 				...state,
 				desc: action.data,
 			};
-		case "addTag":
+		case CREATE_ROOM_ACTION_TYPE.ADD_TAG:
 			const newTags = state.tags.concat({ name: action.data });
 			return {
 				...state,
 				tags: newTags,
 			};
-		case "addStartDate":
-			console.log(action.data);
+		case CREATE_ROOM_ACTION_TYPE.ADD_START_DATE:
 			return {
 				...state,
 				startDate: action.data,
 			};
-		case "addEndDate":
+		case CREATE_ROOM_ACTION_TYPE.ADD_END_DATE:
 			return {
 				...state,
 				endDate: action.data,
 			};
-		case "addNOP":
+		case CREATE_ROOM_ACTION_TYPE.ADD_NOP:
 			return {
 				...state,
 				numOfParticipants: action.data,
 			};
-		case "addCueCards":
+		case CREATE_ROOM_ACTION_TYPE.ADD_CUE_CARDS:
 			const newcueCard = {
 				title: action.data.title,
 				desc: action.data.desc,
@@ -63,30 +64,30 @@ const tempRoomDetailReducer = (state = initialState, action) => {
 				...state,
 				cueCards: newCues,
 			};
-		case "addImage":
+		case CREATE_ROOM_ACTION_TYPE.ADD_IMAGE:
 			return {
 				...state,
 				img: action.data,
 			};
-		case "removeCueCards":
+		case CREATE_ROOM_ACTION_TYPE.REMOVE_CUE_CARDS:
 			const itemToRemove = action.data;
 			return {
 				...state,
 				cueCards: state.cueCards.filter((item) => item !== itemToRemove),
 			};
-		case "removeTag":
+		case CREATE_ROOM_ACTION_TYPE.REMOVE_TAG:
 			const tagText = action.data.tag;
 			const tagIndex = action.data.index;
 			return {
 				...state,
 				tags: state.tags.filter((item, index) => item.name !== tagText),
 			};
-		case "addParticipants":
+		case CREATE_ROOM_ACTION_TYPE.ADD_PARTICIPANTS:
 			return {
 				...state,
 				inviteParticipants: action.data,
 			};
-		case "clear":
+		case CREATE_ROOM_ACTION_TYPE.CLEAR_ROOM_DATA:
 			return initialState;
 		default:
 			return initialState;

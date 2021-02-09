@@ -3,7 +3,10 @@ import "./CreateCueCard.css";
 import { TextField, Button } from "@material-ui/core";
 import CueCard from "../cueCards/CueCards.js";
 import { useSelector, useDispatch } from "react-redux";
-import { addCueCardsToTempRoomDetail, removeCueCardsToTempRoomDetail } from "../../actions/";
+import {
+	addCueCardsToRoomDetail,
+	removeCueCardsFromRoomDetail,
+} from "../../actions/createRoomActions.js";
 
 export default function CreateCueCard({ readOnly }) {
 	const titleRef = useRef(null);
@@ -16,13 +19,13 @@ export default function CreateCueCard({ readOnly }) {
 
 	const addCueCard = (e) => {
 		e.preventDefault();
-		dispatch(addCueCardsToTempRoomDetail(titleRef.current.value, descRef.current.value));
+		dispatch(addCueCardsToRoomDetail(titleRef.current.value, descRef.current.value));
 		titleRef.current.value = "";
 		descRef.current.value = "";
 	};
 
 	const handleDelete = (itemToRemove) => {
-		dispatch(removeCueCardsToTempRoomDetail(itemToRemove));
+		dispatch(removeCueCardsFromRoomDetail(itemToRemove));
 	};
 
 	return (

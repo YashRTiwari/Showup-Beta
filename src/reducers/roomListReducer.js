@@ -57,4 +57,9 @@ const roomListReducer = (state = [initialRoomItem], action) => {
 	}
 };
 
+const ROOM_ACTIONS = {
+	ADD: "ADD_ROOM",
+	GET: "GET_ALL_ROOMS",
+};
+
 export default roomListReducer;

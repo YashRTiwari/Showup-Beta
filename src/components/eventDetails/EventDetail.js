@@ -4,16 +4,15 @@ import "./EventDetail.css";
 import Tag from "../tags/Tag";
 import { useSelector, useDispatch } from "react-redux";
 import {
-	updateTempRoomDetails,
-	addTagToTempRoomDetail,
-	addTitleToTempRoomDetail,
-	addDescToTempRoomDetail,
-	addStartDateToTempRoomDetail,
-	addEndDateToTempRoomDetail,
-	addNOPToTempRoomDetail,
-	addImageToTempRoomDetail,
-	removeTagFromTempRoomDetail,
-} from "../../actions";
+	addTitleToRoomDetail,
+	addDescToRoomDetail,
+	addStartDateToRoomDetail,
+	addEndDateToRoomDetail,
+	addNOPToRoomDetail,
+	addImageToRoomDetail,
+	removeTagFromRoomDetail,
+	addTagToRoomDetail,
+} from "../../actions/createRoomActions.js";
 import { useParams } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -34,39 +33,27 @@ function EventDetail({ readOnly }) {
 	);
 
 	const handleTitleChange = (e) => {
-		dispatch(addTitleToTempRoomDetail(e.target.value));
+		dispatch(addTitleToRoomDetail(e.target.value));
 	};
 
 	const handleDescChange = (e) => {
-		dispatch(addDescToTempRoomDetail(e.target.value));
+		dispatch(addDescToRoomDetail(e.target.value));
 	};
 
 	const handleStartDateChange = (e) => {
-		// const startDateSelected = new Date(startDateRef.current.value);
-		// const now = new Date();
-		// const diffTime = startDateSelected - now;
-		// if (diffTime > 0) {
-		// 	dispatch(addStartDateToTempRoomDetail(e.target.value));
-		// }
-		dispatch(addStartDateToTempRoomDetail(e.target.value));
+		dispatch(addStartDateToRoomDetail(e.target.value));
 	};
 
 	const handleEndDateChange = (e) => {
-		// const endDateSelected = new Date(endDateRef.current.value);
-		// const startDateSelected = new Date(startDateRef.current.value);
-		// // const now = new Date();
-		// // const diffFromNow = startDateSelected - now;
-		// // const diffFromStart = endDateSelected - start;
-
-		dispatch(addEndDateToTempRoomDetail(e.target.value));
+		dispatch(addEndDateToRoomDetail(e.target.value));
 	};
 
 	const handleNOPChange = (e) => {
-		dispatch(addNOPToTempRoomDetail(e.target.value));
+		dispatch(addNOPToRoomDetail(e.target.value));
 	};
 
 	const handleTagDelete = (tag, index) => {
-		dispatch(removeTagFromTempRoomDetail(tag, index));
+		dispatch(removeTagFromRoomDetail(tag, index));
 	};
 
 	const keyPress = (e) => {
@@ -74,7 +61,7 @@ function EventDetail({ readOnly }) {
 		if (valueToAdd.length > 0 && e.keyCode == 13) {
 			var temp = eventData.tags.filter((item) => item.name === valueToAdd);
 			if (temp.length === 0) {
-				dispatch(addTagToTempRoomDetail(valueToAdd));
+				dispatch(addTagToRoomDetail(valueToAdd));
 				tagRef.current.value = "";
 			} else {
 				tagRef.current.helperText = "Tag already added";
@@ -84,7 +71,7 @@ function EventDetail({ readOnly }) {
 
 	const handleFileSelector = (e) => {
 		if (e.target.files && e.target.files[0]) {
-			dispatch(addImageToTempRoomDetail(URL.createObjectURL(e.target.files[0])));
+			dispatch(addImageToRoomDetail(URL.createObjectURL(e.target.files[0])));
 		}
 	};
 
