@@ -94,10 +94,14 @@ function EventDetail({ readOnly }) {
 							}
 						}}
 					>
-						{eventData && eventData.img && (
+						<img
+							className='event-image2'
+							src='https://www.qceventplanning.com/wp-content/uploads/2015/12/Event-Planner-Jobs-vs-Becoming-a-Wedding-Planner-Corporate-Event.jpg'
+						/>
+						{/* {eventData && eventData.img && (
 							<img className='event-image2' src={eventData && eventData.img} />
-						)}
-						{!eventData || (!eventData.img && <AddIcon />)}
+						)} */}
+						{/* {!eventData || (!eventData.img && <AddIcon />)} */}
 					</Button>
 				</>
 			}
