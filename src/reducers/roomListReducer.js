@@ -50,8 +50,7 @@ const roomListReducer = (state = [initialRoomItem], action) => {
 		case "get":
 			return state;
 		case "add":
-			// const nstate = state.concat(action.data);
-
+			const nstate = state.concat(action.data);
 			return nstate;
 		default:
 			return [initialRoomItem];
