@@ -1,0 +1,22 @@
+.Error {
+	position: absolute;
+	margin: auto;
+	top: 100;
+	left: 0;
+	right: 0;
+	background-color: lightblue;
+	z-index: 1000;
+	width: 500px;
+	border-radius: 25px;
+	padding: 10px 20px;
+}
+
+.error-hide {
+	display: none;
+}
+
+.error-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

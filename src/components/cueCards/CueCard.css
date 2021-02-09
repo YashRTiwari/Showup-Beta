@@ -1,27 +1,29 @@
 .CueCard {
-  width: 200px;
-  background-color: steelblue;
-  border-radius: 25px;
-  padding: 20px;
-  margin: 10px 20px 10px 0px;
+	width: 200px;
+	background-color: steelblue;
+	border-radius: 25px;
+	padding: 20px;
+	margin: 10px 20px 10px 0px;
+	display: flex;
+	flex-direction: column;
 }
 
 .cue-header {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .cue-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: white;
+	font-size: 20px;
+	font-weight: 600;
+	color: white;
 }
 
 .cue-menu-icon {
-  color: white;
+	color: white;
 }
 
 .CueCard Button {
-  padding: 4px 0px;
-  justify-content: flex-end;
+	padding: 4px 0px;
+	justify-content: flex-end;
 }

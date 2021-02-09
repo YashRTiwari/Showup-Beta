@@ -1,122 +1,187 @@
-import React from 'react'
-import './CreateRoom.css'
-import {
-    Link,
-    Switch,
-    Route,
-    useRouteMatch, useHistory
-  } from "react-router-dom";
-import EventDetail from '../../components/eventDetails/EventDetail.js';
-import CreateCueCard from '../../components/createCueCards/CreateCueCard.js'
-import { Button, Divider } from '@material-ui/core';
-import {useSelector, useDispatch } from 'react-redux'
-import {addUserRoom} from '../../actions'
-
-
+import React, { useState } from "react";
+import "./CreateRoom.css";
+import { Link, Switch, Route, useRouteMatch, useHistory } from "react-router-dom";
+import EventDetail from "../../components/eventDetails/EventDetail.js";
+import CreateCueCard from "../../components/createCueCards/CreateCueCard.js";
+import { Button, Divider } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { addUserRoom } from "../../actions";
+import Error from "../../components/error/Error.js";
 
 function CreateRoom() {
+	let { path, url } = useRouteMatch();
+	let history = useHistory();
 
-    let { path, url } = useRouteMatch();
-    let history = useHistory();
+	const state = useSelector((state) => state.tempRoomDetailReducer);
+	const dispatch = useDispatch();
+	const [error, setError] = useState(null);
 
-    const state = useSelector(state => state.tempRoomDetailReducer);
-    const dispatch = useDispatch();
+	function goBack() {
+		history.push("/user-rooms");
+	}
 
+	function goToCueCards() {
+		// setError(null);
+		// var e = null;
+		// const startDate = new Date(state.startDate);
+		// const endDate = new Date(state.endDate);
+		// const nowDate = new Date();
+		// if (state.title.length === 0) {
+		// 	e = "Please enter title";
+		// } else if (state.desc.length === 0) {
+		// 	e = "Please enter description";
+		// } else if (state.tags.length === 0) {
+		// 	e = "Please add tags";
+		// } else if (startDate - nowDate < 0) {
+		// 	e = "Invalid Start Date";
+		// } else if (startDate - endDate > 0) {
+		// 	e = "Invalid End Date";
+		// } else if (state.numOfParticipants == 0) {
+		// 	e = "Please add minimum <b>number of participants</b>";
+		// } else if (state.numOfParticipants > 8) {
+		// 	e = "Please add minimum <b>number of participants</b>";
+		// }
+		// setError(e);
+		// if (!e) {
+		// 	history.push(`${path}/add-cue-cards`);
+		// }
+		history.push(`${path}/add-cue-cards`);
+	}
 
-    function goBack(){
-        console.log("Called")
-        history.push("/user-rooms");
-    }
+	function goToRoomDetails() {
+		history.push(`${path}/`);
+	}
 
-    function goToCueCards() {
-        console.log("Called")
+	function goToInviteParticipants() {
+		history.push(`${path}/invite-participants`);
+	}
 
-        history.push(`${path}/add-cue-cards`);
-    }
+	function addRoomToDb() {
+		history.push("/user-rooms");
+		dispatch(addUserRoom(state));
+	}
 
-    function goToRoomDetails() {
-        console.log("Called")
+	const showError = () => {
+		return <Error title='Error' message={error} />;
+	};
 
-        history.push(`${path}/`);
-    }
+	return (
+		<div className='CreateRoom'>
+			{error && showError()}
 
-    function goToInviteParticipants() {
-        console.log("Called")
-        history.push(`${path}/invite-participants`);
-    }
+			<Switch>
+				<Route exact path={`${path}/`}>
+					<Step1 path={path} goBack={goBack} goNext={goToCueCards} />
+				</Route>
 
-    function addRoomToDb() {
-        history.push("/user-rooms")
-        dispatch(addUserRoom(state))
-    }
+				<Route path={`${path}/add-cue-cards`}>
+					<Step2 path={path} goBack={goToRoomDetails} goNext={goToInviteParticipants} />
+				</Route>
 
-    return (
-            <div className="CreateRoom">
+				<Route path={`${path}/invite-participants`}>
+					<Step3 path={path} goBack={goToCueCards} goNext={addRoomToDb} />
+				</Route>
+			</Switch>
+		</div>
+	);
+}
 
-                <Switch>
-                    <Route exact path={`${path}/`}>
-                            <div className="creat-room-header">
-                                <h1>Create Room : 1 of 3</h1>
-                                <div>
-                                    <Button className="create-room-btn" onClick={goBack} color="default" variant="outlined">Cancel</Button>
-                                    <Button className="create-room-btn next" type="button" onClick={goToCueCards} color="secondary" variant="contained">Next</Button>
-                                </div>
-                            </div>
+const Step1 = ({ goBack, goNext, path }) => {
+	return (
+		<div className='create-room-step'>
+			<div className='creat-room-header'>
+				<h1>Create Room : 1 of 3</h1>
+				<div>
+					<Button className='create-room-btn' onClick={goBack} color='default' variant='outlined'>
+						Cancel
+					</Button>
+					<Button
+						className='create-room-btn next'
+						type='button'
+						onClick={goNext}
+						color='secondary'
+						variant='contained'
+					>
+						Next
+					</Button>
+				</div>
+			</div>
 
-                            <div className="create-room-navigator">
-                                    <Link to={`${path}/`}><div className="create-room-links">Create Room</div></Link>
-                                    <Divider width="200px"/>
+			<div className='create-room-navigator'>
+				<Link to={`${path}/`}>
+					<div className='create-room-links'>Create Room</div>
+				</Link>
+				<Divider width='200px' />
 
-                                    <div className="create-room-links">Cue Cards</div>
-                                    <Divider width="200px"/>
-                                    <div className="create-room-links">Invite Participants</div>
-                            </div>
-                        <EventDetail readOnly={false}/>
-                    </Route>
+				<div className='create-room-links'>Cue Cards</div>
+				<Divider width='200px' />
+				<div className='create-room-links'>Invite Participants</div>
+			</div>
+			<EventDetail readOnly={false} />
+		</div>
+	);
+};
 
-                    <Route path={`${path}/add-cue-cards`} >
-                        
-                            <div className="creat-room-header">
-                                <h1>Create Room : 2 of 3</h1>
-                                <div>
-                                    <Button className="create-room-btn" color="default" onClick={goToRoomDetails} variant="outlined">Back</Button>
-                                    <Button className="create-room-btn next" onClick={goToInviteParticipants} color="secondary" variant="contained">Next</Button>
-                                </div>
-                            </div>
+function Step2({ path, goBack, goNext }) {
+	return (
+		<div className='create-room-step'>
+			<div className='creat-room-header'>
+				<h1>Create Room : 2 of 3</h1>
+				<div>
+					<Button className='create-room-btn' color='default' onClick={goBack} variant='outlined'>
+						Back
+					</Button>
+					<Button
+						className='create-room-btn next'
+						onClick={goNext}
+						color='secondary'
+						variant='contained'
+					>
+						Next
+					</Button>
+				</div>
+			</div>
 
-                            <div className="create-room-navigator">
-                                    <Link to={`${path}/`}><div className="create-room-links">Create Room</div></Link>
-                                    <Divider width="200px"/>
-                                    <Link to={`${path}/add-cue-cards`}><div className="create-room-links">Cue Cards</div></Link>
-                                    <Divider width="200px"/>
-                                    <div className="create-room-links">Invite Participants</div>
-                            </div>
-                        
-                        <CreateCueCard />
+			<div className='create-room-navigator'>
+				<Link to={`${path}/`}>
+					<div className='create-room-links'>Create Room</div>
+				</Link>
+				<Divider width='200px' />
+				<Link to={`${path}/add-cue-cards`}>
+					<div className='create-room-links'>Cue Cards</div>
+				</Link>
+				<Divider width='200px' />
+				<div className='create-room-links'>Invite Participants</div>
+			</div>
 
-                    </Route>
+			<CreateCueCard />
+		</div>
+	);
+}
 
-                    <Route path={`${path}/invite-participants`} >
+function Step3({ path, goBack, goNext }) {
+	return (
+		<div className='create-room-step'>
+			<div className='creat-room-header'>
+				<h1>Create Room : 3 of 3</h1>
+				<div>
+					<Button className='create-room-btn' color='default' onClick={goBack} variant='outlined'>
+						Back
+					</Button>
+					<Button
+						className='create-room-btn next'
+						color='secondary'
+						onClick={goNext}
+						variant='contained'
+					>
+						Finish
+					</Button>
+				</div>
+			</div>
 
-                            <div className="creat-room-header">
-                                <h1>Create Room : 3 of 3</h1>
-                                <div>
-                                    <Button className="create-room-btn" color="default" onClick={goToCueCards} variant="outlined">Back</Button>
-                                    <Button className="create-room-btn next" color="secondary" onClick={addRoomToDb} variant="contained">Finish</Button>
-                                </div>
-                            </div>
-
-                            <div className="user-avail">
-                                No users available
-                            </div>
-
-                    </Route>
-
-
-
-                </Switch>
-            </div>
-    )
+			<div className='user-avail'>No users available</div>
+		</div>
+	);
 }
 
 export default CreateRoom;

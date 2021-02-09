@@ -1,28 +1,28 @@
 .CreateCueCard {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  justify-content: center;
-  /* background-color: khaki; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .add-cue-cards {
-  display: flex;
-  flex-direction: row;
-  padding: 30px 0px;
+	display: flex;
+	flex-direction: row;
+	padding: 30px 0px;
 }
 
 .add-cue-input {
-  width: 600px;
-  margin: 0px 30px !important;
+	width: 600px;
+	margin: 0px 30px !important;
 }
 
 .add-cue-btn {
-  height: inherit;
+	height: inherit;
 }
 
 .add-cue-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
 }

@@ -1,29 +1,42 @@
 .CreateRoom {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+}
+
+.creat-room-header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
 
 .create-room-navigator {
-  display: flex;
-  align-items: center;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.create-room-step {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .create-room-navigator li {
-  list-style: none;
-  display: inline;
-  margin: 50px 20px;
+	list-style: none;
+	display: inline;
+	margin: 50px 20px;
 }
 
 .create-room-links {
-  margin: 50px 20px;
+	margin: 50px 20px;
 }
 
 .user-avail {
-  margin-top: 300px;
-  padding: 25px 80px;
-  background-color: #f1f1f1;
-  border-radius: 20px;
-  text-align: center;
+	margin-top: 300px;
+	padding: 25px 80px;
+	background-color: #f1f1f1;
+	border-radius: 20px;
+	text-align: center;
 }
