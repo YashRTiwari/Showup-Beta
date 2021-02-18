@@ -10,7 +10,7 @@ const composeEnhancers =
 		: compose;
 
 const enhancer = composeEnhancers(applyMiddleware(thunk));
-export const store = createStore(rootReducer, enhancer);
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const rrfConfig = {
 	userProfile: "users",
