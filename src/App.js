@@ -1,31 +1,11 @@
 import "./App.css";
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./reducers";
 import { Provider } from "react-redux";
-import { firebase } from "./config/firebase-config";
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
-import { createFirestoreInstance } from "redux-firestore";
-import thunk from "redux-thunk";
+import { store, rrfProps } from "./store.js";
 
 function App() {
-	const store = createStore(rootReducer, applyMiddleware(thunk));
-
-	// ,
-
-	const rrfConfig = {
-		userProfile: "users",
-		useFireastoreForProfile: true,
-	};
-
-	const rrfProps = {
-		firebase,
-		config: rrfConfig,
-		dispatch: store.dispatch,
-		createFirestoreInstance,
-	};
-
 	return (
 		<Provider store={store}>
 			<ReactReduxFirebaseProvider {...rrfProps}>
