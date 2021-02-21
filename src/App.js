@@ -1,9 +1,12 @@
 import "./App.css";
 import Home from "./pages/home/Home";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { ReactReduxFirebaseProvider, useFirebase } from "react-redux-firebase";
 import { store, rrfProps } from "./store.js";
+import PrivateRoute from "./components/privateRoute/PrivateRoute.js";
+import SignIn from "./pages/signin/SignIn.js";
+import SignUp from "./pages/signUp/SignUp";
 
 function App() {
 	return (
@@ -11,7 +14,17 @@ function App() {
 			<ReactReduxFirebaseProvider {...rrfProps}>
 				<Router>
 					<div className='App'>
-						<Home />
+						<Switch>
+							<Route path='/sign-in'>
+								<SignIn />
+							</Route>
+							<Route path='/sign-up'>
+								<SignUp />
+							</Route>
+							<PrivateRoute path='/'>
+								<Home />
+							</PrivateRoute>
+						</Switch>
 					</div>
 				</Router>
 			</ReactReduxFirebaseProvider>
