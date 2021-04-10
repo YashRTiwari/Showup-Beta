@@ -15,3 +15,31 @@
   text-decoration: none !important;
   color: #1f1f1f;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.lgo {
+  margin-right: 20px;
+}
+
+.header span {
+  font-size: 100px;
+  padding: 0px !important;
+  margin: 0px !important;
+  color: #8633FE;
+}

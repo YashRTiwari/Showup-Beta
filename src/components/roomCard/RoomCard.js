@@ -1,9 +1,6 @@
-import { Button } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./RoomCard.css";
-import VideocamIcon from '@material-ui/icons/Videocam';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 
 export default function RoomCard({ roomData, index: id }) {
 	const simplifiedRoomData = {

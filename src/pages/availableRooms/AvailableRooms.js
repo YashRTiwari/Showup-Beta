@@ -16,6 +16,19 @@ export default function AvailableRooms() {
 
 	return (
 		<div className='AvailableRooms'>
+
+			<div className="header-div">
+
+				<div className="header">
+					<img height="100px" className="lgo" src="showuplogo.png"/>
+					<span>ShowUP</span>
+				</div>
+
+				<p style={{fontSize: "32px"}}>24x7 Professional networking for free.</p>
+				<p style={{fontSize: "20px"}}>Virtual video rooms for professionals to meet, discuss and learn about topics of interest.</p>
+			</div>
+
+
 			<Header className='room-header' title='Live Rooms' />
 			<div className='avail-room-live'>
 				{liveRoomData.map((item, index) => {
