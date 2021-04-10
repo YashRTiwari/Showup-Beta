@@ -1,6 +1,7 @@
 import { CREATE_ROOM_ACTION_TYPE } from "../actions/createRoomActions.js";
 
 const initialState = {
+	createdUserUID: "",
 	title: "",
 	desc: "",
 	tags: [],
@@ -14,6 +15,11 @@ const initialState = {
 
 const tempRoomDetailReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case CREATE_ROOM_ACTION_TYPE.ADD_CREATEUSER_UID:
+			return {
+				...state,
+				createdUserUID: action.data,
+			};
 		case CREATE_ROOM_ACTION_TYPE.UPDATE_ROOM_DATA:
 			const data = action.data;
 			return {

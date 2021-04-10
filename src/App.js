@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import { ReactReduxFirebaseProvider, useFirebase } from "react-redux-firebase";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { store, rrfProps } from "./store.js";
 import PrivateRoute from "./components/privateRoute/PrivateRoute.js";
 import SignIn from "./pages/signin/SignIn.js";

@@ -52,7 +52,7 @@ export default function SignIn() {
 	return isLoaded(auth) && !isEmpty(auth) ? (
 		<Redirect
 			to={{
-				pathname: "/home",
+				pathname: "/",
 				state: { from: location },
 			}}
 		/>

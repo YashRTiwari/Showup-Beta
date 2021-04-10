@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import "./CreateRoom.css";
-import { Link, Switch, Route, useRouteMatch, useHistory } from "react-router-dom";
-import EventDetail from "../../components/eventDetails/EventDetail.js";
-import CreateCueCard from "../../components/createCueCards/CreateCueCard.js";
 import { Button, Divider } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
-import { addRoomToDb, addToDb } from "../../actions/createRoomActions.js";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import { addRoomToDb, addUIDToRoomDetail } from "../../actions/createRoomActions.js";
+import CreateCueCard from "../../components/createCueCards/CreateCueCard.js";
 import Error from "../../components/error/Error.js";
+import EventDetail from "../../components/eventDetails/EventDetail.js";
+import "./CreateRoom.css";
 
 function CreateRoom() {
 	let { path, url } = useRouteMatch();
@@ -15,36 +15,17 @@ function CreateRoom() {
 	const state = useSelector((state) => state.tempRoomDetailReducer);
 	const dispatch = useDispatch();
 	const [error, setError] = useState(null);
+	const user = useSelector((state) => state.firebaseReducer.auth);
+
+	useEffect(() => {
+		//dispatch(addRoomBasicDetails(user.uid));
+	}, []);
 
 	const goBack = () => {
 		history.push("/user-rooms");
 	};
 
 	const goToCueCards = () => {
-		// setError(null);
-		// var e = null;
-		// const startDate = new Date(state.startDate);
-		// const endDate = new Date(state.endDate);
-		// const nowDate = new Date();
-		// if (state.title.length === 0) {
-		// 	e = "Please enter title";
-		// } else if (state.desc.length === 0) {
-		// 	e = "Please enter description";
-		// } else if (state.tags.length === 0) {
-		// 	e = "Please add tags";
-		// } else if (startDate - nowDate < 0) {
-		// 	e = "Invalid Start Date";
-		// } else if (startDate - endDate > 0) {
-		// 	e = "Invalid End Date";
-		// } else if (state.numOfParticipants == 0) {
-		// 	e = "Please add minimum <b>number of participants</b>";
-		// } else if (state.numOfParticipants > 8) {
-		// 	e = "Please add minimum <b>number of participants</b>";
-		// }
-		// setError(e);
-		// if (!e) {
-		// 	history.push(`${path}/add-cue-cards`);
-		// }
 		history.push(`${path}/add-cue-cards`);
 	};
 

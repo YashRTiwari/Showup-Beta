@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React, useRef } from "react";
 import "./CreateCueCard.css";
 import { TextField, Button } from "@material-ui/core";
 import CueCard from "../cueCards/CueCards.js";

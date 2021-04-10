@@ -11,6 +11,7 @@ export const CREATE_ROOM_ACTION_TYPE = {
 	ADD_CUE_CARDS: "ADD_CUE_CARDS",
 	ADD_PARTICIPANTS: "ADD_PARTICIPANTS",
 	ADD_IMAGE: "ADD_IMAGE",
+	ADD_CREATEUSER_UID: "ADD_CREATEUSER_UID",
 
 	ADD_ROOM_TO_DB: "ADD_ROOM_TO_DB",
 
@@ -73,6 +74,16 @@ export const addCueCardsToRoomDetail = (title, desc) => {
 	};
 };
 
+export const addRoomBasicDetails = (dbId, uid) => {
+	return {
+		type: CREATE_ROOM_ACTION_TYPE.ADD_CREATEUSER_UID,
+		data: {
+			uid,
+			dbId,
+		},
+	};
+};
+
 export const removeCueCardsFromRoomDetail = (d) => {
 	return {
 		type: CREATE_ROOM_ACTION_TYPE.REMOVE_CUE_CARDS,
@@ -111,8 +122,9 @@ export const clearRoomDetail = () => {
 };
 
 export const addRoomToDb = () => async (dispatch, getState) => {
-	const room = getState().tempRoomDetailReducer;
-	const id = firestore.collection("rooms").doc().id;
+	var room = getState().tempRoomDetailReducer;
+	let id = firestore.collection("rooms").doc().id;
+	room.id = id
 	await firestore
 		.collection("rooms")
 		.doc(id)

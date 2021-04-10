@@ -1,5 +1,5 @@
 import { Button, TextField } from "@material-ui/core";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./EventDetail.css";
 import Tag from "../tags/Tag";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,9 +14,11 @@ import {
 	addTagToRoomDetail,
 } from "../../actions/createRoomActions.js";
 import { useParams } from "react-router-dom";
-import AddIcon from "@material-ui/icons/Add";
 
 function EventDetail({ readOnly }) {
+	const dispatch = useDispatch();
+	const eventData = useSelector((state) => readOnly ? state.roomDetailReducer : state.tempRoomDetailReducer);
+
 	const titleRef = useRef(null);
 	const descRef = useRef(null);
 	const tagRef = useRef(null);
@@ -24,13 +26,6 @@ function EventDetail({ readOnly }) {
 	const startDateRef = useRef(null);
 	const endDateRef = useRef(null);
 	const fileSelector = useRef(null);
-
-	const params = useParams();
-	const dispatch = useDispatch();
-
-	const eventData = useSelector((state) =>
-		readOnly ? state.roomListReducer[params.index] : state.tempRoomDetailReducer
-	);
 
 	const handleTitleChange = (e) => {
 		dispatch(addTitleToRoomDetail(e.target.value));
@@ -58,7 +53,7 @@ function EventDetail({ readOnly }) {
 
 	const keyPress = (e) => {
 		const valueToAdd = tagRef.current.value;
-		if (valueToAdd.length > 0 && e.keyCode == 13) {
+		if (valueToAdd.length > 0 && e.keyCode === 13) {
 			var temp = eventData.tags.filter((item) => item.name === valueToAdd);
 			if (temp.length === 0) {
 				dispatch(addTagToRoomDetail(valueToAdd));
@@ -77,6 +72,7 @@ function EventDetail({ readOnly }) {
 
 	return (
 		<div className='EventDetail'>
+
 			{
 				<>
 					<input
@@ -109,7 +105,7 @@ function EventDetail({ readOnly }) {
 			<div className='event-info'>
 				<TextField
 					className='event-input'
-					defaultValue={eventData && eventData.title}
+					value={eventData && eventData.title}
 					label='Title'
 					variant='outlined'
 					inputRef={titleRef}
@@ -134,7 +130,7 @@ function EventDetail({ readOnly }) {
 						readOnly: readOnly,
 					}}
 					label='Description'
-					defaultValue={eventData && eventData.desc}
+					value={eventData && eventData.desc}
 					variant='outlined'
 				/>
 
@@ -171,7 +167,7 @@ function EventDetail({ readOnly }) {
 						label='Start Date'
 						type='datetime-local'
 						onChange={handleStartDateChange}
-						defaultValue={eventData && eventData.startDate}
+						value={eventData && eventData.startDate}
 						inputRef={startDateRef}
 						InputLabelProps={{
 							shrink: true,
@@ -189,7 +185,7 @@ function EventDetail({ readOnly }) {
 						type='datetime-local'
 						onChange={handleEndDateChange}
 						inputRef={endDateRef}
-						defaultValue={eventData && eventData.endDate}
+						value={eventData && eventData.endDate}
 						InputLabelProps={{
 							shrink: true,
 						}}
@@ -203,7 +199,7 @@ function EventDetail({ readOnly }) {
 					<TextField
 						className='event-n-part'
 						label='Number of participants'
-						defaultValue={eventData && eventData.numOfParticipants}
+						value={eventData && eventData.numOfParticipants}
 						onChange={handleNOPChange}
 						inputRef={numOfParticipantsRef}
 						type='number'

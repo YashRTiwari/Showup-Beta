@@ -7,17 +7,17 @@ const PrivateRoute = ({ children, ...remainingProps }) => {
 	return (
 		<Route
 			{...remainingProps}
-			render={({ location }) =>
-				isLoaded(auth) && !isEmpty(auth) ? (
-					children
-				) : (
-					<Redirect
-						to={{
-							pathname: "/sign-in",
-							state: { from: location },
-						}}
-					/>
-				)
+			render={({ location }) => children // TODO
+				// isLoaded(auth) && !isEmpty(auth) ? (
+				// 	children
+				// ) : (
+				// 	<Redirect
+				// 		to={{
+				// 			pathname: "/sign-in",
+				// 			state: { from: location },
+				// 		}}
+				// 	/>
+				// )
 			}
 		/>
 	);

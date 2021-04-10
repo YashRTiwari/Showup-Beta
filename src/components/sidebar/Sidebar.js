@@ -1,11 +1,11 @@
-import React from "react";
-import "./Sidebar.css";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import VideocamRoundedIcon from "@material-ui/icons/VideocamRounded";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
-import { useFirebase } from "react-redux-firebase";
 import IconButton from "@material-ui/core/IconButton";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import AddIcon from '@material-ui/icons/Add';
+import React from "react";
+import { useFirebase } from "react-redux-firebase";
+import { Link, useHistory } from "react-router-dom";
+import "./Sidebar.css";
 
 export default function Sidebar() {
 	const firebase = useFirebase();
@@ -27,8 +27,8 @@ export default function Sidebar() {
 					<HomeRoundedIcon className='sidebar-icons' />
 				</Link>
 
-				<Link to={`/user-rooms`}>
-					<VideocamRoundedIcon className='sidebar-icons' />
+				<Link to={`/create-room`}>
+					<AddIcon className='sidebar-icons' />
 				</Link>
 			</div>
 			<div className='menu-bottom'>

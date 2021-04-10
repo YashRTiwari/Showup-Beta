@@ -14,7 +14,7 @@ export const store = createStore(rootReducer, enhancer);
 
 const rrfConfig = {
 	userProfile: "users",
-	useFireastoreForProfile: true,
+	useFirestoreForProfile: true,
 };
 
 export const rrfProps = {

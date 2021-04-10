@@ -14,10 +14,29 @@
 	border-radius: 24px;
 	height: 150px;
 	object-fit: cover;
+	background-image: url("https://www.qceventplanning.com/wp-content/uploads/2015/12/Event-Planner-Jobs-vs-Becoming-a-Wedding-Planner-Corporate-Event.jpg");
+	background-position: center; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: cover;
+	margin-bottom: 25px;
+}
+
+.room-icon {
+	font-size: 32px !important;
+	background-color: darkorchid;
+	padding: 8px;
+	border-radius: 40px;
+	color: white;
+}
+
+.room-name-btn{
+	position: relative;
+	top: 192px;
+	left: 190px;
 }
 
 .room-name {
-	font-size: 22px;
+	font-size: 20px;
 	font-weight: 500;
 	margin-top: 12px;
 }
@@ -27,19 +46,11 @@
 	font-weight: 500;
 }
 
-.room-fun {
-	margin: 14px 0px 0px;
-}
 
-.room-btn-join {
-	display: flex;
-	width: 100px;
-	height: 40px;
-	border: 1px solid #b6b4b4;
-	border-radius: 8px;
-	justify-content: center;
-	align-items: center;
-	color: #8a3afe;
-	font-weight: 600;
-	cursor: pointer;
+.room-join {
+	text-align: center;
+	background-color: rgba(153, 50, 204, 0.11);
+	border-radius: 24px;
+	margin: 8px;
+	padding: 4px;
 }

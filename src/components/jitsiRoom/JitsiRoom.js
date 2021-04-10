@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import useJitsi from "./useJitsi";
 
 const JitsiRoom = ({
@@ -27,7 +27,7 @@ const JitsiRoom = ({
 	}, [error]);
 
 	return (
-		<div style={{ ...{ width: "80%", height: "100%" }, ...containerStyles }}>
+		<div style={{ ...{ width: "100%", height: "100%" }, ...containerStyles }}>
 			{error && (errorComponent || <p>{error}</p>)}
 			{!error && loading && (loadingComponent || <p>Loading ...</p>)}
 			<div

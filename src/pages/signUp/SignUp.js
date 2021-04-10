@@ -1,12 +1,9 @@
-import { React, useRef } from "react";
-import "./SignUp.css";
-import { useFirebase } from "react-redux-firebase";
-import { useHistory, useLocation, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { isLoaded, isEmpty } from "react-redux-firebase";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import { Box, Button, Divider, TextField } from "@material-ui/core";
+import { React, useRef } from "react";
+import { useSelector } from "react-redux";
+import { useFirebase } from "react-redux-firebase";
+import { useHistory } from "react-router-dom";
+import "./SignUp.css";
 
 export default function SignUp() {
 	const firebase = useFirebase();

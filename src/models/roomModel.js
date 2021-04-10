@@ -1,5 +1,6 @@
 class RoomData {
 	constructor(
+		id,
 		title,
 		desc,
 		tags,
@@ -10,6 +11,7 @@ class RoomData {
 		inviteParticipants,
 		img
 	) {
+		this.id = id;
 		this.title = title;
 		this.desc = desc;
 		this.tags = tags;

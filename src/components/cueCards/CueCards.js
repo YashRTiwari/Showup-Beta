@@ -5,7 +5,6 @@ import { IconButton } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import DeleteIcon from "@material-ui/icons/Delete";
-import Fade from "@material-ui/core/Fade";
 
 export default function CueCard({ data, handleDelete, readOnly }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);

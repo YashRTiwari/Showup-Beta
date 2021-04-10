@@ -1,9 +1,11 @@
-import React from "react";
-import "./RoomCard.css";
 import { Button } from "@material-ui/core";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
+import "./RoomCard.css";
+import VideocamIcon from '@material-ui/icons/Videocam';
+import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 
-export default function RoomCard({ roomData, index }) {
+export default function RoomCard({ roomData, index: id }) {
 	const simplifiedRoomData = {
 		title: trimTitle(roomData.title),
 		desc: trimDescription(roomData.desc),
@@ -22,22 +24,18 @@ export default function RoomCard({ roomData, index }) {
 	}
 
 	return (
-		<div className='RoomCard'>
-			<img
-				className='room-img'
-				src='https://www.qceventplanning.com/wp-content/uploads/2015/12/Event-Planner-Jobs-vs-Becoming-a-Wedding-Planner-Corporate-Event.jpg'
-				// src={roomData.img}
-				norepeat
-			/>
-			<div className='room-name'>{simplifiedRoomData.title}</div>
-			<div className='room-desc'>{simplifiedRoomData.desc}</div>
-			<div className='room-fun'>
-				<Link to={`/join-room/${index}/${roomData.title}`}>
-					<Button variant='contained' color='secondary'>
-						Join
-					</Button>
-				</Link>
+		<>
+			<div className='RoomCard'>
+				<div className='room-img'/>
+				<div className='room-name'>{simplifiedRoomData.title}</div>
+				<div className="room-join">
+					<Link to={`/join-room/${roomData.id}/${roomData.title}`}>
+						<h3> Join</h3>
+					</Link>
+				</div>
 			</div>
-		</div>
+
+		</>
+
 	);
 }

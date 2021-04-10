@@ -14,12 +14,19 @@ export const _getLiveRooms = (data) => {
 	};
 };
 
+export const _getLiveRoomData = (data) => {
+	return {
+		type: LIVE_ROOM_ACTION_TYPE.GET_LIVE_ROOM_DATA,
+		data,
+	};
+}
+
 export const getLiveRooms = () => async (dispatch, getState) => {
 	await firestore
 		.collection("rooms")
 		.get()
 		.then((querySnapshot) => {
-			var list = [];
+			let list = [];
 			querySnapshot.forEach((doc) => {
 				const data = doc.data();
 				list = [...list, data];
@@ -31,6 +38,16 @@ export const getLiveRooms = () => async (dispatch, getState) => {
 		});
 };
 
+export const getLiveRoomData = (id) => async (dispatch, getState) => {
+	dispatch(_getLiveRoomData({}));
+	let response = await firestore
+		.collection("rooms")
+		.doc(id)
+		.get();
+	dispatch(_getLiveRoomData(response.data()));
+};
+
 export const LIVE_ROOM_ACTION_TYPE = {
 	GET_LIVE_ROOMS: "GET_LIVE_ROOMS",
+	GET_LIVE_ROOM_DATA: "GET_LIVE_ROOM_DATA"
 };

@@ -1,4 +1,4 @@
-import { Button, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import React, { useState } from "react";
 import "./Error.css";
 import CloseIcon from "@material-ui/icons/Close";
