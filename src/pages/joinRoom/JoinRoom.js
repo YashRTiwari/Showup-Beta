@@ -58,7 +58,7 @@ export default function JoinRoom() {
 	return (
 		<>
 			<div className='join-room-header'>
-				<h1>Room : {roomData.title}</h1>
+				<h1> {roomData.title}</h1>
 				<Button variant='contained' color='secondary' onClick={onMeetingEnd}>
 					Exit
 				</Button>
