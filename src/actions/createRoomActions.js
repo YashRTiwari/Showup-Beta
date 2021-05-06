@@ -1,5 +1,6 @@
-import { firestore } from "../config/firebase-config.js";
+import { firestore, firebase } from "../config/firebase-config.js";
 import { addUserRoom } from "./index.js";
+import { v4 as uuidv4 } from "uuid";
 
 export const CREATE_ROOM_ACTION_TYPE = {
 	ADD_TITLE: "ADD_TITLE",
@@ -108,10 +109,11 @@ export const addParticipantsToRoomDetail = (ap) => {
 	};
 };
 
-export const addImageToRoomDetail = (imgFile) => {
+export const addImageToRoomDetail = (imgFile, imgURL) => {
 	return {
 		type: CREATE_ROOM_ACTION_TYPE.ADD_IMAGE,
-		data: imgFile,
+		data: imgURL,
+		file: imgFile,
 	};
 };
 
@@ -121,10 +123,25 @@ export const clearRoomDetail = () => {
 	};
 };
 
+async function uploadBlob(file) {
+	let id = uuidv4();
+	const ref = firebase.storage().ref().child(id);
+	let data = await ref.put(file);
+	let downloadUrl = await ref.getDownloadURL();
+	return downloadUrl;
+}
+
 export const addRoomToDb = () => async (dispatch, getState) => {
 	var room = getState().tempRoomDetailReducer;
 	let id = firestore.collection("rooms").doc().id;
-	room.id = id
+
+	if (room.imgFile !== null) {
+		room.img = await uploadBlob(room.imgFile);
+	}
+
+	room.imgFile = null;
+
+	room.id = id;
 	await firestore
 		.collection("rooms")
 		.doc(id)

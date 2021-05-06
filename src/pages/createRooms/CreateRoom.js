@@ -39,7 +39,7 @@ function CreateRoom() {
 
 	const submitRoomToDb = () => {
 		dispatch(addRoomToDb(state));
-		history.push("/user-rooms");
+		history.push("/");
 	};
 
 	const showError = () => {

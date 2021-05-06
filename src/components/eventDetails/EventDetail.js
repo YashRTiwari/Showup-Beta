@@ -14,10 +14,13 @@ import {
 	addTagToRoomDetail,
 } from "../../actions/createRoomActions.js";
 import { useParams } from "react-router-dom";
+import AddIcon from "@material-ui/icons/Add";
 
 function EventDetail({ readOnly }) {
 	const dispatch = useDispatch();
-	const eventData = useSelector((state) => readOnly ? state.roomDetailReducer : state.tempRoomDetailReducer);
+	const eventData = useSelector((state) =>
+		readOnly ? state.roomDetailReducer : state.tempRoomDetailReducer
+	);
 
 	const titleRef = useRef(null);
 	const descRef = useRef(null);
@@ -66,13 +69,13 @@ function EventDetail({ readOnly }) {
 
 	const handleFileSelector = (e) => {
 		if (e.target.files && e.target.files[0]) {
-			dispatch(addImageToRoomDetail(URL.createObjectURL(e.target.files[0])));
+			var url = URL.createObjectURL(e.target.files[0]);
+			dispatch(addImageToRoomDetail(e.target.files[0], url));
 		}
 	};
 
 	return (
 		<div className='EventDetail'>
-
 			{
 				<>
 					<input
@@ -90,14 +93,10 @@ function EventDetail({ readOnly }) {
 							}
 						}}
 					>
-						<img
-							className='event-image2'
-							src='https://www.qceventplanning.com/wp-content/uploads/2015/12/Event-Planner-Jobs-vs-Becoming-a-Wedding-Planner-Corporate-Event.jpg'
-						/>
-						{/* {eventData && eventData.img && (
+						{eventData && eventData.img && (
 							<img className='event-image2' src={eventData && eventData.img} />
-						)} */}
-						{/* {!eventData || (!eventData.img && <AddIcon />)} */}
+						)}
+						{!eventData || (!eventData.img && <AddIcon />)}
 					</Button>
 				</>
 			}

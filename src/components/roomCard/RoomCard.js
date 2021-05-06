@@ -23,16 +23,21 @@ export default function RoomCard({ roomData, index: id }) {
 	return (
 		<>
 			<div className='RoomCard'>
-				<div className='room-img'/>
+				<div className='room-img'>
+					<img
+						src={
+							roomData.img ||
+							"https://www.qceventplanning.com/wp-content/uploads/2015/12/Event-Planner-Jobs-vs-Becoming-a-Wedding-Planner-Corporate-Event.jpg"
+						}
+					/>
+				</div>
 				<div className='room-name'>{simplifiedRoomData.title}</div>
-				<div className="room-join">
+				<div className='room-join'>
 					<Link to={`/join-room/${roomData.id}/${roomData.title}`}>
 						<h3> Join</h3>
 					</Link>
 				</div>
 			</div>
-
 		</>
-
 	);
 }

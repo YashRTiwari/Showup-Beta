@@ -11,6 +11,7 @@ const initialState = {
 	cueCards: [],
 	inviteParticipants: [],
 	img: null,
+	imgFile: null,
 };
 
 const tempRoomDetailReducer = (state = initialState, action) => {
@@ -74,6 +75,7 @@ const tempRoomDetailReducer = (state = initialState, action) => {
 			return {
 				...state,
 				img: action.data,
+				imgFile: action.file,
 			};
 		case CREATE_ROOM_ACTION_TYPE.REMOVE_CUE_CARDS:
 			const itemToRemove = action.data;
